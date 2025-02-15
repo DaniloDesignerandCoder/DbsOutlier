@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBS Outlier - Início</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="header">
+        <h1>
+            <!-- Logo com evento de clique -->
+            <img src="logo DBS.png" alt="DBS Outlier" style="height: 50px;" onclick="playAudio()">
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link ativo">Início</a></li>
+                <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li>
+                    <div class="carrinho-icone" onclick="mostrarCarrinho(event)">
+                        🛒 <span id="contador-carrinho">0</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- Card do carrinho -->
+        <div class="carrinho-card" id="carrinho-card">
+            <h3>Seu Carrinho</h3>
+            <ul id="carrinho-lista"></ul>
+            <div class="total">Total: R$ <span id="carrinho-total">0.00</span></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="video-container">
+            <video autoplay loop muted playsinline class="video-background">
+                <source src="vdsaler.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
+        <h2>Relógios Exclusivos para Quem Quer se Destacar</h2>
+        <p>Encontre o relógio perfeito para seu estilo.</p>
+        <a href="catalogo.html" class="btn">Ver Catálogo</a>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 DBS Outlier - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Áudio -->
+    <audio id="audio" loop>
+        <source src="audio.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <script>
+        // Função para iniciar o áudio ao clicar na logo
+        function playAudio() {
+            const audio = document.getElementById('audio');
+            audio.play(); // Inicia o áudio
+            localStorage.setItem('audioPlaying', 'true'); // Armazena o estado do áudio
+        }
+
+        // Verifica se o áudio estava tocando antes da navegação
+        window.onload = function() {
+            const audio = document.getElementById('audio');
+            const audioPlaying = localStorage.getItem('audioPlaying');
+
+            if (audioPlaying === 'true') {
+                audio.play(); // Se estava tocando antes, continua tocando
+            }
+        }
+
+        // Detecção de saída de página para parar o áudio
+        window.onbeforeunload = function() {
+            const audio = document.getElementById('audio');
+            audio.pause(); // Pause o áudio ao sair da página
+            localStorage.removeItem('audioPlaying'); // Remove o estado de reprodução
+        }
+    </script>
+</body>
+</html>

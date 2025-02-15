@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBS Outlier - Catálogo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="header">
+        <h1>
+    <img src="logo DBS.png" alt="DBS Outlier" style="height: 50px;">
+</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="catalogo.html" class="nav-link ativo">Catálogo</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li>
+                    <div class="carrinho-icone" onclick="mostrarCarrinho(event)">
+                        🛒 <span id="contador-carrinho">0</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- Card do carrinho -->
+        <div class="carrinho-card" id="carrinho-card">
+            <h3>Seu Carrinho</h3>
+            <ul id="carrinho-lista"></ul>
+            <div class="total">Total: R$ <span id="carrinho-total">0.00</span></div>
+        </div>
+    </header>
+
+    <section class="produtos">
+        <h2>Entre em contato conosco</h2>
+        <div class="grid" id="produtos-grid"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 DBS Outlier - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBS Outlier - Catálogo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo do cabeçalho fixo */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #001f3f; /* Azul ônix */
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #header h1 {
+            margin: 0;
+            text-align: center;
+        }
+
+        #header nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #header nav ul li {
+            margin: 0 15px;
+        }
+
+        #header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Adicionando espaçamento para evitar sobreposição do cabeçalho */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Layout do catálogo */
+        .produtos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .produto {
+            background: #001f3f; /* Azul ônix, mesma cor da logo */
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            color: white; /* Texto branco para contraste */
+        }
+
+        .produto img {
+            width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .produto h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .produto p {
+            font-size: 14px;
+            color: #d0d0d0; /* Cinza claro para contraste */
+        }
+
+        .produto span {
+            display: block;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #00aaff; /* Azul mais claro para destacar o preço */
+        }
+
+        .btn {
+            background: #00aaff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #0088cc;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1>
+            <img src="logo DBS.png" alt="DBS Outlier" style="height: 50px;">
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="catalogo.html" class="nav-link ativo">Catálogo</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li>
+                    <div class="carrinho-icone" onclick="mostrarCarrinho(event)">
+                        🛒 <span id="contador-carrinho">0</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="produtos">
+        <h2>Catálogo Completo</h2>
+        <div class="produtos-grid" id="produtos-grid"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 DBS Outlier - Todos os direitos reservados</p>
+    </footer>
+
+    <audio autoplay loop>
+        <source src="audio.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <script>
+        const produtos = [
+            { nome: "Relógio Elegance", descricao: "Design sofisticado para ocasiões especiais.", preco: 899.90, imagem: "relogio1.jpg" },
+            { nome: "Relógio Sport", descricao: "Ideal para quem busca resistência e estilo.", preco: 759.90, imagem: "relogio2.jpg" },
+            { nome: "Relógio Classic", descricao: "Estilo clássico para todos os momentos.", preco: 699.90, imagem: "relogio3.jpg" },
+            { nome: "Relógio Modern", descricao: "Design moderno e inovador.", preco: 999.90, imagem: "relogio4.jpg" },
+            { nome: "Relógio Vintage", descricao: "Inspirado nos clássicos dos anos 70.", preco: 849.90, imagem: "relogio5.jpg" }
+        ];
+
+        let carrinho = [];
+
+        function carregarProdutos() {
+            const grid = document.getElementById("produtos-grid");
+            if (grid) {
+                grid.innerHTML = produtos.map(produto => `
+                    <div class="produto">
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <h3>${produto.nome}</h3>
+                        <p>${produto.descricao}</p>
+                        <span>R$ ${produto.preco.toFixed(2)}</span>
+                        <button class="btn" onclick="adicionarAoCarrinho('${produto.nome}')">Comprar</button>
+                    </div>
+                `).join("");
+            }
+        }
+
+        function adicionarAoCarrinho(nomeProduto) {
+            const produto = produtos.find(p => p.nome === nomeProduto);
+            if (produto) {
+                carrinho.push(produto);
+                atualizarCarrinho();
+                alert(`${produto.nome} foi adicionado ao carrinho!`);
+            }
+        }
+
+        function atualizarCarrinho() {
+            const contador = document.getElementById("contador-carrinho");
+            const lista = document.getElementById("carrinho-lista");
+            const total = document.getElementById("carrinho-total");
+
+            if (contador) contador.textContent = carrinho.length;
+
+            if (lista) {
+                lista.innerHTML = carrinho.map(item => `
+                    <li>${item.nome} - R$ ${item.preco.toFixed(2)}</li>
+                `).join("");
+            }
+
+            if (total) {
+                const totalCarrinho = carrinho.reduce((acc, item) => acc + item.preco, 0);
+                total.textContent = totalCarrinho.toFixed(2);
+            }
+        }
+
+        function limparCarrinho() {
+            carrinho = [];
+            atualizarCarrinho();
+            alert("Carrinho limpo!");
+        }
+
+        function mostrarCarrinho(event) {
+            event.stopPropagation();
+            const card = document.getElementById("carrinho-card");
+            if (card) card.classList.toggle("ativo");
+        }
+
+        document.addEventListener("click", (event) => {
+            const card = document.getElementById("carrinho-card");
+            const carrinhoIcone = document.querySelector(".carrinho-icone");
+            if (card && carrinhoIcone && !card.contains(event.target)) {
+                card.classList.remove("ativo");
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", carregarProdutos);
+    </script>
+</body>
+</html>

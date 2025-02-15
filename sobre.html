@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBS Outlier - Sobre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="header">
+        <h1>
+    <img src="logo DBS.png" alt="DBS Outlier" style="height: 50px;">
+</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+                <li><a href="sobre.html" class="nav-link ativo">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li>
+                    <div class="carrinho-icone" onclick="mostrarCarrinho(event)">
+                        🛒 <span id="contador-carrinho">0</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- Card do carrinho -->
+        <div class="carrinho-card" id="carrinho-card">
+            <h3>Seu Carrinho</h3>
+            <ul id="carrinho-lista"></ul>
+            <div class="total">Total: R$ <span id="carrinho-total">0.00</span></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Sobre Nós</h2>
+        <p>Descubra a história por trás da DBS Outlier e nossa paixão por relógios exclusivos.</p>
+    </section>
+
+    <section class="sobre">
+        <div class="conteudo">
+            <h3>Nossa História</h3>
+            <p>Fundada em 2025, a DBS Outlier nasceu da paixão por relógios que combinam design sofisticado e funcionalidade. Nosso objetivo é oferecer peças únicas que refletem o estilo e a personalidade de quem as usa.</p>
+            <h3>Nossa Missão</h3>
+            <p>Oferecer relógios exclusivos que se destacam pela qualidade, design e inovação, proporcionando uma experiência única aos nossos clientes.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 DBS Outlier - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
